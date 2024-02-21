@@ -3444,6 +3444,10 @@ module "velero" {
       value = local.velero_backup_s3_bucket_prefix
     },
     {
+      name  = "configuration.backupStorageLocation[0].provider"
+      value = "aws"
+    },
+    {
       name  = "configuration.backupStorageLocation[0].bucket"
       value = local.velero_backup_s3_bucket_name
     },
@@ -3454,6 +3458,10 @@ module "velero" {
     {
       name  = "configuration.volumeSnapshotLocation[0].config.region"
       value = local.region
+    },
+    {
+      name  = "configuration.volumeSnapshotLocation[0].provider"
+      value = "aws"
     },
     {
       name  = "credentials.useSecret"
