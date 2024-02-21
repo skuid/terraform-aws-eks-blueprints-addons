@@ -3440,10 +3440,6 @@ module "velero" {
       value = local.velero_service_account
     },
     {
-      name  = "configuration.provider"
-      value = "aws"
-    },
-    {
       name  = "configuration.backupStorageLocation[0].prefix"
       value = local.velero_backup_s3_bucket_prefix
     },
