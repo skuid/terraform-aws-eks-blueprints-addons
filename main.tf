@@ -3381,7 +3381,7 @@ module "velero" {
   source  = "aws-ia/eks-blueprints-addon/aws"
   version = "1.1.1"
 
-  create = false
+  create = var.enable_velero
 
   # Disable helm release
   create_release = var.create_kubernetes_resources
