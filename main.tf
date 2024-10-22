@@ -3326,6 +3326,7 @@ locals {
   velero_backup_s3_bucket        = try(split(":", var.velero.s3_backup_location), [])
   velero_backup_s3_bucket_arn    = try(split("/", var.velero.s3_backup_location)[0], var.velero.s3_backup_location, "")
   velero_backup_s3_bucket_name   = try(split("/", local.velero_backup_s3_bucket[5])[0], local.velero_backup_s3_bucket[5], "")
+  velero_s3_bucket_region        = try(var.velero.velero_s3_bucket_region, "us-west-2")
   velero_backup_s3_bucket_prefix = try(split("/", var.velero.s3_backup_location)[1], "")
   velero_namespace               = try(var.velero.namespace, "velero")
 }
@@ -3453,11 +3454,11 @@ module "velero" {
     },
     {
       name  = "configuration.backupStorageLocation[0].config.region"
-      value = local.region
+      value = local.velero_s3_bucket_region
     },
     {
       name  = "configuration.volumeSnapshotLocation[0].config.region"
-      value = local.region
+      value = local.velero_s3_bucket_region
     },
     {
       name  = "configuration.volumeSnapshotLocation[0].provider"
